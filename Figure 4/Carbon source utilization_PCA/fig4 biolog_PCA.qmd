@@ -1,0 +1,95 @@
+---
+title: "SynCom Assembly: Biolog 代谢功能分析报告"
+date: last-modified
+---
+
+## 研究背景
+本分析基于 Biolog 碳源利用数据，旨在通过 PCA 降维方法评估不同合成菌群（SynCom）处理组之间的代谢功能谱差异。
+
+## PCA 分析结果解读
+
+PCA 结果显示，微生物群落的碳源利用谱在不同处理间存在显著分化（PC1 和 PC2 解释了 52% 的总变异）。其中，a 组和 b 组表现出相似的代谢特征，在图中紧密聚类。而 e 组和 f 组沿着 PC1 轴与其它组别明显分离，表明 [具体处理因素] 显著改变了合成菌群（SynCom）对特定碳源的偏好性。此外，d 组和 h 组在 PC2 轴上的位移暗示了其在 [某类特定代谢，如羧酸类] 利用能力上的增强或减弱。
+## 结果生成代码
+```{r}
+library(vegan)
+library(ggpubr)
+
+# Read the Biolog data table
+x = read.table(file="Figure 4/Carbon source utilization_PCA/biolog.txt", sep="\t", header=TRUE, row.names=1)
+
+# Perform redundancy analysis (RDA), or optionally principal components analysis (PCA)
+x.pca = rda(x)
+x.pca
+outputpca = summary(x.pca)
+
+# Display the structure of the PCA result list
+str(outputpca)
+
+# Extract species scores
+a = outputpca$species ; a
+
+# Extract explained variance (importance of components)
+b = outputpca$cont$importance ; b
+
+# Create output directory if it doesn't exist
+if (!dir.exists("output")) {
+  dir.create("output")
+}
+
+# Save species scores and explained variance to files
+write.table(a, file="output/PCA_site.txt", sep="\t", col.names = NA)
+write.table(b, file="output/PCA_evale.txt", sep="\t", col.names = NA)
+
+# Save the full PCA summary output to a text file
+sink("output/PCA.txt")
+outputpca
+sink()
+
+# Manually assign groups for different treatments to enable grouping and coloring in plots
+# The grouped file should be prepared in advance
+y = read.table("Figure 4/Carbon source utilization_PCA/PCA_site_group.txt", header = TRUE, row.names = 1)
+head(y)
+
+# Load plotting libraries
+library(ggplot2)
+library(ggpubr)
+
+# Extract and round variance explained by PC1 and PC2
+pc1 = round(b[2,1], 2); pc1
+pc2 = round(b[2,2], 2); pc2
+
+# Set up plot theme
+plot.theme = theme(
+  plot.title = element_text(size=20, color="black", family="serif", face="bold", vjust=0.5, hjust=0.5),
+  axis.line = element_line(size=0.5, colour="black"),
+  axis.ticks = element_line(color="black"),
+  axis.text = element_text(size=20, color="black", family="serif", face="bold", vjust=0.5, hjust=0.5),
+  axis.title = element_text(size=20, color="black", family="serif", face="bold", vjust=0.5, hjust=0.5),
+  legend.position = "right",
+  legend.background = element_blank(),
+  legend.key = element_blank(),
+  legend.text = element_text(colour='black', size=20, family="serif", face='bold'),
+  legend.title = element_blank(),
+  panel.background = element_blank(),
+  panel.grid.major = element_blank(),
+  panel.grid.minor = element_blank()
+)
+
+# Plot PCA result
+p <- ggplot(y, aes(PC1, PC2, colour = group1)) +
+  geom_point(aes(shape = group2), size = 5) +
+  scale_shape_manual(values = c(15, 16, 17, 3, 4, 18, 25, 7, 8, 9, 10, 11)) + # Customize point shapes
+  scale_color_manual(values = c("#9932CC", "#CCFF99", "#BDB76B", "#CD5C5C", "#669933", 
+                                "#996600", "#6495ED", "#A52A2A")) +
+  geom_hline(yintercept = 0, linetype = 2, color = "grey", size = 0.5) +
+  geom_vline(xintercept = 0, linetype = 2, color = "grey", size = 0.5) +
+  labs(x = paste("PC1 (", pc1*100, "%)", sep = ""),
+       y = paste("PC2 (", pc2*100, "%)", sep = "")) +
+  plot.theme
+
+# Display the plot
+print(p)
+
+# Save the plot to output folder
+ggsave("output/biolog_PCA.pdf", plot = p, width = 10, height = 8)
+ggsave("output/biolog_PCA.png", plot = p, width = 10, height = 8, dpi = 300)
