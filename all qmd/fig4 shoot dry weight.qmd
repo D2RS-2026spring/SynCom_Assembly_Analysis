@@ -14,9 +14,10 @@ format: html
 
 ```{r}
 # === Load data ===
-df <- read.csv("Figure 4/Shoot dry weight/shoot dry weight.csv")
+df <- read.csv("../Figure 4/Shoot dry weight/shoot dry weight.csv")
 
 # === Load required packages ===
+library(here)
 library(ggplot2)
 library(dplyr)
 library(ggpubr)

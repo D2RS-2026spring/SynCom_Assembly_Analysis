@@ -21,9 +21,10 @@ format: html
 ```{r}
 # === Load data ===
 # 指向子文件夹里的文件
-df <- read.csv("Figure 4/Shoot height/shoot height.csv")
+df <- read.csv("../Figure 4/Shoot height/shoot height.csv")
 
 # === Load required packages ===
+library(here)
 library(ggplot2)
 library(dplyr)
 library(ggpubr)

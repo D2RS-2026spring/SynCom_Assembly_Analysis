@@ -15,7 +15,7 @@ library(vegan)
 library(ggpubr)
 
 # Read the Biolog data table
-x = read.table(file="Figure 4/Carbon source utilization_PCA/biolog.txt", sep="\t", header=TRUE, row.names=1)
+x = read.table(file="../Figure 4/Carbon source utilization_PCA/biolog.txt", sep="\t", header=TRUE, row.names=1)
 
 # Perform redundancy analysis (RDA), or optionally principal components analysis (PCA)
 x.pca = rda(x)
@@ -47,7 +47,7 @@ sink()
 
 # Manually assign groups for different treatments to enable grouping and coloring in plots
 # The grouped file should be prepared in advance
-y = read.table("Figure 4/Carbon source utilization_PCA/PCA_site_group.txt", header = TRUE, row.names = 1)
+y = read.table("../Figure 4/Carbon source utilization_PCA/PCA_site_group.txt", header = TRUE, row.names = 1)
 head(y)
 
 # Load plotting libraries

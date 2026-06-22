@@ -1,0 +1,26 @@
+project:
+  type: book
+  output-dir: _book
+
+execute:
+  echo: true
+  warning: false
+  message: false
+
+book:
+  title: "合成芽孢杆菌菌群社会互作促进植物生长复现"
+  author: "韦荣耀、赵甜甜、马微、张一鸣"
+  date: "2026-06"
+  chapters:
+    - index.qmd
+    - "all qmd/fig2 Shannon_16S.qmd"
+    - "all qmd/fig2 Shannon_gryA.qmd"
+    - "all qmd/fig4 biolog_PCA.qmd"
+    - "all qmd/fig4 shoot dry weight.qmd"
+    - "all qmd/fig4 shoot height.qmd"
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand

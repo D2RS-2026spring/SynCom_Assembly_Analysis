@@ -1,0 +1,66 @@
+---
+title: "合成芽孢杆菌菌群社会互作促进植物生长复现"
+subtitle: "Bacterial social interactions in synthetic Bacillus consortia enhance plant growth"
+author: "韦荣耀、赵甜甜、马微、张一鸣"
+date: "2026-06"
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 2
+---
+
+<style>
+img { max-width: 100%; height: auto; }
+figure img { max-width: 100%; height: auto; }
+</style>
+
+## 论文信息
+
+| 项目 | 内容 |
+|------|------|
+| **论文标题** | Bacterial social interactions in synthetic Bacillus consortia enhance plant growth |
+| **期刊** | iMeta (2025) |
+| **DOI** | 10.1186/s40168-021-01103-0 |
+| **复现语言** | R 4.x |
+
+## 团队成员
+
+| 姓名 | 学号 |
+|------|------|
+| 韦荣耀 | 2025303120153 |
+| 赵甜甜 | 2025303120144 |
+| 马微 | 2025303120060 |
+| 张一鸣 | 2025303120095 |
+
+## 项目简介
+
+本项目基于 2025 年发表于 **iMeta** 杂志的科研成果进行复现研究。核心科学问题是探索不同亲缘关系的芽孢杆菌如何通过社会互作（Social Interactions）组装成合成菌群（SynComs），以及这些互作如何协同促进黄瓜生长。
+
+### 复现基础
+
+- **数据公开**：测序数据已托管至 NCBI (PRJNA879238, PRJNA1248407)
+- **代码透明**：原始分析脚本已在 GitHub 开源
+- **逻辑严密**：涵盖从数据标准化到高级统计绘图的全流程
+
+## 分析内容
+
+本复现项目包含以下核心分析：
+
+1. **16S rRNA 细菌群落多样性分析** — Shannon 指数评估 α-多样性
+2. **gyrA 功能基因多样性分析** — 特定功能基因的多样性
+3. **Biolog 代谢功能分析** — PCA 降维评估碳源利用谱差异
+4. **植物生长指标分析** — 株高和干重的统计分析
+
+## 核心发现
+
+1. **环境驱动**：土壤背景（NS 与 SS）是决定细菌多样性的基础因素
+2. **管理干预**：SQR9 的添加改变了原有的群落平衡
+3. **社会互作**：不同亲缘关系的芽孢杆菌通过社会互作协同促进植物生长
+
+## 项目仓库
+
+- **分析代码**：`all qmd/` — 核心分析文档
+- **数据**：`Figure 2/`, `Figure 4/`, `Figure 5/` — 各图相关脚本与中间数据
+- **输出**：`output/` — 可视化结果
+- **环境**：`renv.lock` — R 依赖版本锁定文件

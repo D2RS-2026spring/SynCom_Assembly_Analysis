@@ -39,7 +39,7 @@ library(dplyr)
 library(ggpubr)
 
 # === Import data ===
-df <- read.csv("Figure 2/Shannon/Shannon_16S.csv")
+df <- read.csv("../Figure 2/Shannon/Shannon_16S.csv")
 
 # Preserve the order of factor levels
 df$richness <- factor(df$richness, levels = unique(df$richness))
