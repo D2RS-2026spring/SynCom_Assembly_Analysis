@@ -98,3 +98,4 @@ print(p)
 # Save the plot to output folder
 ggsave("output/biolog_PCA.pdf", plot = p, width = 10, height = 8)
 ggsave("output/biolog_PCA.png", plot = p, width = 10, height = 8, dpi = 300)
+```
