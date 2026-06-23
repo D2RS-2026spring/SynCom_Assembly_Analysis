@@ -10,7 +10,12 @@ date: last-modified
 
 PCA 结果显示，微生物群落的碳源利用谱在不同处理间存在显著分化（PC1 和 PC2 解释了 52% 的总变异）。其中，a 组和 b 组表现出相似的代谢特征，在图中紧密聚类。而 e 组和 f 组沿着 PC1 轴与其它组别明显分离，表明 [具体处理因素] 显著改变了合成菌群（SynCom）对特定碳源的偏好性。此外，d 组和 h 组在 PC2 轴上的位移暗示了其在 [某类特定代谢，如羧酸类] 利用能力上的增强或减弱。
 ## 结果生成代码
+
 ```{r}
+#| fig-cap: "Biolog 碳源利用 PCA 分析"
+#| fig-width: 10
+#| fig-height: 8
+
 library(vegan)
 library(ggpubr)
 

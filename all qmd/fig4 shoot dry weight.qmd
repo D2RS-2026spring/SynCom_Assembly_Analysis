@@ -13,6 +13,10 @@ format: html
 ## 分析代码
 
 ```{r}
+#| fig-cap: "植物地上部干重与物种丰富度分析"
+#| fig-width: 8
+#| fig-height: 6
+
 # === Load data ===
 df <- read.csv("../Figure 4/Shoot dry weight/shoot dry weight.csv")
 
@@ -89,6 +93,9 @@ p <- ggplot(df, aes(x = richness, y = shoot_dry_weight, fill = richness)) +
 if (!dir.exists(here("output"))) {
   dir.create(here("output"), recursive = TRUE)
 }
+
+# Display plot in HTML output
+print(p)
 
 # 保存 PDF 到 根目录/output/ 文件夹中
 ggsave(

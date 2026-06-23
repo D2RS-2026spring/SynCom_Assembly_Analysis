@@ -2,11 +2,11 @@
 title: "基于 gyrA 基因的微生物群落 Shannon 多样性分析报告"
 format: html
 ---
-## 1. 实验指标与背景
+## 实验指标与背景
 [cite_start]本分析通过 **Shannon 指数** 评估了微生物群落的 $\alpha$-多样性 [cite: 40]。该指数不仅反映了物种的丰富度，也体现了群落的均匀度。
 
 
-## 2. 处理组别定义
+## 处理组别定义
 [cite_start]图表对比了以下五个处理组 [cite: 46, 47, 48, 49]：
 * [cite_start]**NS_1w**：NS 土壤处理 1 周 [cite: 46]。
 * [cite_start]**NS**：NS 土壤对照组 [cite: 47]。
@@ -14,7 +14,7 @@ format: html
 * [cite_start]**SS**：SS 土壤对照组 [cite: 49]。
 * [cite_start]**SS_SQR9**：SS 土壤接种 SQR9 菌株组 [cite: 49]。
 
-## 3. 结果解读
+## 结果解读
 
 ### 3.1 总体多样性水平
 * [cite_start]**数值分布**：所有样本的 Shannon 指数主要介于 $4.5$ 至 $6.5$ 之间 [cite: 41, 42, 44, 45]。
@@ -25,12 +25,16 @@ format: html
 * [cite_start]**NS 背景下的剧烈波动**：**NS_SQR9** 组的多样性下降最为显著，中位数降至约 $5.2$，且组内个体差异较大，表现为较长的须线和离散的样点 [cite: 44, 48]。
 * [cite_start]**SS 背景下的影响**：**SS_SQR9** 的多样性同样低于其对照组 **SS**，但下降幅度相对较小，且数据分布更为紧凑 [cite: 49]。
 
-## 4. 科学结论
+## 科学结论
 1.  **SQR9 的群落重塑作用**：外源功能菌 SQR9 的引入显著改变了 *gyrA* 型微生物的群落结构，导致多样性水平普遍下降。这通常意味着 SQR9 在定殖过程中占据了资源优势，对土著微生物产生了竞争压力。
 2.  **土壤背景的调节作用**：不同土壤类型（NS vs SS）对 SQR9 的响应程度不一，这可能与土壤原始的理化性质或微生物负载量有关。
-## 5.分析代码
+## 分析代码
 
 ```{r}
+#| fig-cap: "gyrA 基因 Shannon 多样性箱线图"
+#| fig-width: 8
+#| fig-height: 6
+
 # === Load required packages ===
 library(here)
 library(ggplot2)
@@ -67,6 +71,9 @@ p <- ggplot(df, aes(x = richness, y = Shannon)) +
   ) +
   labs(y = "Shannon diversity") +
   ylim(4, 7)
+
+# Display plot in HTML output
+print(p)
 
 # === Save figure as PDF ===
 # 检查根目录下是否有 output 文件夹，没有则创建一个
